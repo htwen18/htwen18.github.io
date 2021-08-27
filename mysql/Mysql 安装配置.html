@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>centos yum安装 | note</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.65e3a471.css" as="style"><link rel="preload" href="/assets/js/app.dbbad447.js" as="script"><link rel="preload" href="/assets/js/2.5b3be71e.js" as="script"><link rel="preload" href="/assets/js/11.ed76e8bb.js" as="script"><link rel="prefetch" href="/assets/js/10.20986b58.js"><link rel="prefetch" href="/assets/js/12.fcc64b86.js"><link rel="prefetch" href="/assets/js/3.d0744a8d.js"><link rel="prefetch" href="/assets/js/4.fe14bf79.js"><link rel="prefetch" href="/assets/js/5.54e160d5.js"><link rel="prefetch" href="/assets/js/6.341fc171.js"><link rel="prefetch" href="/assets/js/7.937fcef8.js"><link rel="prefetch" href="/assets/js/8.52c4f78d.js"><link rel="prefetch" href="/assets/js/9.dbdab1c8.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.65e3a471.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">note</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Linux</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Mysql</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/mysql/MYSQL performance schema详解.html" class="sidebar-link">MYSQL performance schema详解</a></li><li><a href="/mysql/Mysql 安装配置.html" class="active sidebar-link">centos yum安装</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/mysql/Mysql 安装配置.html#centos-yum安装" class="sidebar-link">centos yum安装</a></li></ul></li><li><a href="/mysql/Mysql 索引结构及算法.html" class="sidebar-link">索引定义</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="centos-yum安装"><a href="#centos-yum安装" class="header-anchor">#</a> centos yum安装</h2> <p>1 yum repo 安装</p> <p>https://dev.mysql.com/downloads/repo/yum/</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">rpm</span> -ivh https://repo.mysql.com//mysql80-community-release-el7-3.noarch.rpm
+</code></pre></div><p>2 myql安装</p> <div class="language-shell extra-class"><pre class="language-shell"><code>yum <span class="token function">install</span> -y mysql-community-server
+</code></pre></div><p>3 启动mysql</p> <div class="language-shell extra-class"><pre class="language-shell"><code>systemctl start mysqld <span class="token comment">#启动服务</span>
+systemctl <span class="token builtin class-name">enable</span> mysqld <span class="token comment"># 开机启动</span>
+</code></pre></div><p>4 修改mysql密码</p> <p>在/var/log/mysqld.log中查找mysql密码</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token comment">#修改密码</span>
+mysql<span class="token operator">&gt;</span> alter user <span class="token string">'root'</span>@<span class="token string">'localhost'</span> identified by <span class="token string">'youpassword'</span><span class="token punctuation">;</span>
+
+<span class="token comment">#开启远程访问</span>
+mysql<span class="token operator">&gt;</span> update user <span class="token builtin class-name">set</span> <span class="token function">host</span> <span class="token operator">=</span> <span class="token string">'%'</span> where <span class="token assign-left variable">user</span><span class="token operator">=</span><span class="token string">'root'</span> and <span class="token function">host</span> <span class="token operator">=</span> <span class="token string">'localhost'</span><span class="token punctuation">;</span>
+
+<span class="token comment"># 简单密码</span>
+mysql<span class="token operator">&gt;</span> <span class="token builtin class-name">set</span> global validate_password.policy<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span>
+mysql<span class="token operator">&gt;</span> <span class="token builtin class-name">set</span> global validate_password.length<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span>
+
+<span class="token comment">#刷新权限</span>
+mysql<span class="token operator">&gt;</span> flush privileges<span class="token punctuation">;</span>
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/mysql/MYSQL performance schema详解.html" class="prev">
+        MYSQL performance schema详解
+      </a></span> <span class="next"><a href="/mysql/Mysql 索引结构及算法.html">
+        索引定义
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.dbbad447.js" defer></script><script src="/assets/js/2.5b3be71e.js" defer></script><script src="/assets/js/11.ed76e8bb.js" defer></script>
+  </body>
+</html>
