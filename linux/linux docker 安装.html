@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>centos docker安装 | note</title>
+    <meta name="generator" content="VuePress 1.8.2">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.65e3a471.css" as="style"><link rel="preload" href="/assets/js/app.89eeff06.js" as="script"><link rel="preload" href="/assets/js/2.5b3be71e.js" as="script"><link rel="preload" href="/assets/js/9.01fd0e98.js" as="script"><link rel="prefetch" href="/assets/js/10.c5ad21fe.js"><link rel="prefetch" href="/assets/js/11.b0f06381.js"><link rel="prefetch" href="/assets/js/12.cc5a81d2.js"><link rel="prefetch" href="/assets/js/13.5de614b6.js"><link rel="prefetch" href="/assets/js/14.cbd04034.js"><link rel="prefetch" href="/assets/js/3.d0744a8d.js"><link rel="prefetch" href="/assets/js/4.c87d2a63.js"><link rel="prefetch" href="/assets/js/5.54e160d5.js"><link rel="prefetch" href="/assets/js/6.341fc171.js"><link rel="prefetch" href="/assets/js/7.937fcef8.js"><link rel="prefetch" href="/assets/js/8.c08c1f2c.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.65e3a471.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">note</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Linux</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/linux/centos初始化笔记.html" class="sidebar-link">/linux/centos初始化笔记.html</a></li><li><a href="/linux/linux docker 安装.html" class="active sidebar-link">centos docker安装</a></li><li><a href="/linux/vim.html" class="sidebar-link">vim 8安装</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Mysql</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="centos-docker安装"><a href="#centos-docker安装" class="header-anchor">#</a> centos docker安装</h1> <p>官方文档</p> <p>https://docs.docker.com/engine/install/centos/</p> <p>常用命令</p> <div class="language-shell extra-class"><pre class="language-shell"><code><span class="token function">sudo</span> yum <span class="token function">install</span> -y yum-utils
+<span class="token function">sudo</span> yum-config-manager <span class="token punctuation">\</span>
+    --add-repo <span class="token punctuation">\</span>
+    https://download.docker.com/linux/centos/docker-ce.repo
+    
+<span class="token function">sudo</span> yum <span class="token function">install</span> docker-ce docker-ce-cli containerd.io -y
+systemctl start docker
+systemctl <span class="token builtin class-name">enable</span> docker
+    
+</code></pre></div><h1 id="docker-compose安装"><a href="#docker-compose安装" class="header-anchor">#</a> docker-compose安装</h1> <p>官方文档</p> <p>https://docs.docker.com/compose/install/</p> <div class="language-shell extra-class"><pre class="language-shell"><code> <span class="token function">sudo</span> <span class="token function">curl</span> -L <span class="token string">&quot;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -s<span class="token variable">)</span></span>-<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span> -m<span class="token variable">)</span></span>&quot;</span> -o /usr/local/bin/docker-compose
+
+<span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/local/bin/docker-compose
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/linux/centos初始化笔记.html" class="prev">
+        /linux/centos初始化笔记.html
+      </a></span> <span class="next"><a href="/linux/vim.html">
+        vim 8安装
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.89eeff06.js" defer></script><script src="/assets/js/2.5b3be71e.js" defer></script><script src="/assets/js/9.01fd0e98.js" defer></script>
+  </body>
+</html>
