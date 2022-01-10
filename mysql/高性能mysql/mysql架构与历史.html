@@ -8,7 +8,7 @@
     
     <meta name="description" content="">
     
-    <link rel="preload" href="/assets/css/0.styles.65e3a471.css" as="style"><link rel="preload" href="/assets/js/app.70ab8258.js" as="script"><link rel="preload" href="/assets/js/2.5b3be71e.js" as="script"><link rel="preload" href="/assets/js/15.3d0e0e99.js" as="script"><link rel="prefetch" href="/assets/js/10.c5ad21fe.js"><link rel="prefetch" href="/assets/js/11.b0f06381.js"><link rel="prefetch" href="/assets/js/12.454f24c4.js"><link rel="prefetch" href="/assets/js/13.5de614b6.js"><link rel="prefetch" href="/assets/js/14.cbd04034.js"><link rel="prefetch" href="/assets/js/3.d0744a8d.js"><link rel="prefetch" href="/assets/js/4.d28322b0.js"><link rel="prefetch" href="/assets/js/5.54e160d5.js"><link rel="prefetch" href="/assets/js/6.341fc171.js"><link rel="prefetch" href="/assets/js/7.c129c07a.js"><link rel="prefetch" href="/assets/js/8.12bd3587.js"><link rel="prefetch" href="/assets/js/9.01fd0e98.js">
+    <link rel="preload" href="/assets/css/0.styles.65e3a471.css" as="style"><link rel="preload" href="/assets/js/app.03c7fc71.js" as="script"><link rel="preload" href="/assets/js/2.5b3be71e.js" as="script"><link rel="preload" href="/assets/js/15.ad63a912.js" as="script"><link rel="prefetch" href="/assets/js/10.c5ad21fe.js"><link rel="prefetch" href="/assets/js/11.b0f06381.js"><link rel="prefetch" href="/assets/js/12.454f24c4.js"><link rel="prefetch" href="/assets/js/13.5de614b6.js"><link rel="prefetch" href="/assets/js/14.cbd04034.js"><link rel="prefetch" href="/assets/js/3.d0744a8d.js"><link rel="prefetch" href="/assets/js/4.d28322b0.js"><link rel="prefetch" href="/assets/js/5.54e160d5.js"><link rel="prefetch" href="/assets/js/6.341fc171.js"><link rel="prefetch" href="/assets/js/7.c129c07a.js"><link rel="prefetch" href="/assets/js/8.12bd3587.js"><link rel="prefetch" href="/assets/js/9.01fd0e98.js">
     <link rel="stylesheet" href="/assets/css/0.styles.65e3a471.css">
   </head>
   <body>
@@ -23,11 +23,15 @@ DELTE
 	InnoDB为删除的每一行保存当前系统版本号作为删除版本号。
 UPDATE
 	InnoDB为插入一行的记录，保存当前系统的版本号作为版本号，同时保存当前系统版本号到原版本号作为删除标识。
-</code></pre></div><p>MVCC只在REPEATABLE READ 和 READ COMMITTED两个隔离级别下工作。其他隔离级别都和MVCC不兼容，因为READ UNCOMMITTED总是读取最新的数据行，而不是符合当前事务版本的数据行。而SERIALZABLE则会对所有读取的行都加锁。</p></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+</code></pre></div><p>MVCC只在REPEATABLE READ 和 READ COMMITTED两个隔离级别下工作。其他隔离级别都和MVCC不兼容，因为READ UNCOMMITTED总是读取最新的数据行，而不是符合当前事务版本的数据行。而SERIALZABLE则会对所有读取的行都加锁。</p> <h3 id="存储引擎"><a href="#存储引擎" class="header-anchor">#</a> 存储引擎</h3> <h4 id="innodb"><a href="#innodb" class="header-anchor">#</a> InnoDB</h4> <p>​	InnoDB是mysql的默认事务型引擎，也是最重要、使用最广泛的存储引擎。它被设计用来处理大量短期（short-lived）事务，短期事务大部分情况是正常提交的，很少会被回滚。InnoDB的性能和自动崩溃回复特性，使得它在非事务存储型的需求中也很流行。</p> <h4 id="myisam"><a href="#myisam" class="header-anchor">#</a> MyISAM</h4> <p>​	myisam提供了大量的特性，包括全文索引、压缩、空间函数（GIS）等，但是myisam不支持事务和行级锁。</p> <p>​	myisam会将表存储在两个文件中：数据文件和索引文件，分别以.MYD和.MYI为扩展名</p> <h5 id="myisam特性"><a href="#myisam特性" class="header-anchor">#</a> myisam特性</h5> <div class="language- extra-class"><pre class="language-text"><code>加锁与并发
+	MyISAM对整张表加锁，而不是针对行。读取时会对需要读到的所有表加共享锁，写入时则对表加排他锁。但是在表有读取查询的同时，也可以往表中插入新的记录（这被称为并发插入，CONCURRENT INSERT）
+修复
+	对于MyISAMb
+</code></pre></div><h4 id="其他"><a href="#其他" class="header-anchor">#</a> 其他</h4></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
       ←
       <a href="/mysql/mysql的锁机制.html" class="prev">
         mysql的锁机制
       </a></span> <!----></p></div> </main></div><div class="global-ui"><!----></div></div>
-    <script src="/assets/js/app.70ab8258.js" defer></script><script src="/assets/js/2.5b3be71e.js" defer></script><script src="/assets/js/15.3d0e0e99.js" defer></script>
+    <script src="/assets/js/app.03c7fc71.js" defer></script><script src="/assets/js/2.5b3be71e.js" defer></script><script src="/assets/js/15.ad63a912.js" defer></script>
   </body>
 </html>
